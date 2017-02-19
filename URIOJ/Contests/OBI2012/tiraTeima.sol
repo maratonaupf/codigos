@@ -1,0 +1,2 @@
+fora
+dentro
