@@ -1,0 +1,132 @@
+########################################################################
+### Dicas de resolução dos problemas da Meia-Maratona UPF ##############
+########################################################################
+
+Todos os códigos-fonte estão (ou estarão) disponíveis aqui no Dropbox :-)
+
+###############################################################
+### AQUECIMENTO ###############################################
+
+# Problema A: Og
+Esse problema é bem trivial, dá pra ver só pelas entradas e saídas. 
+A resposta para cada caso de teste é a soma dos inteiros da entrada. 
+
+# Problema B: Jogo do Maior
+Um problema também trivial.
+Para cada caso de teste iniciado com um inteiro N, mantemos duas 
+variáveis, VA e VB, representando o número de vitórias dos 
+participantes A e B, respectivamente.
+Iniciamos VA e VB com zero em cada caso de teste. 
+Então, lemos N vezes os números A e B. 
+Se A for maior que B, incrementamos VA em 1.
+Se A for menor que B, incrementamos VB em 1.
+Se A e B forem iguais, é um empate; não fazemos nada. 
+A saída, para cada caso de teste, são os dois inteiros VA e VB.
+
+
+###############################################################
+### MEIA-MARATONA (valendo) ###################################
+
+# Problema A: O Fim Está Próximo! 
+Este é *exatamente* o clássico Problema da Mochila: 
+Dados N objetos, tendo cada objeto um peso e um valor, 
+qual é o valor máximo que um ladrão consegue carregar numa 
+mochila de capacidade W sem exceder a capacidade da mochila?
+
+O Problema A, "O Fim Está Próximo!", se trata de um caso da 
+variante clássica do Problema da Mochila, a variante 0-1, em que 
+para cada item X, ou o ladrão leva X, ou não leva X. 
+E resolvemos esta variante através de Programação Dinâmica, 
+usando o já conhecido Algoritmo da Mochila 0-1. 
+
+O Problema da Mochila, bem como a maioria dos problemas 
+em que a Programação Dinâmica é aplicável, pode ser resolvido das 
+seguintes formas: Top-Down (recursiva) ou Bottom-Up (iterativa).
+Ambas estão disponíveis no nosso Dropbox, respectivamente, 
+como fim-1.cpp e fim-2.cpp.
+
+
+# Problema B: Guarda Costeira
+Matemática. Explicação e resolução no próprio arquivo guarda.cpp.
+
+
+# Problema C: Revisão de Contrato
+Manipulação de Strings. 
+O maior número possível era da ordem de 10^100, então certamente 
+trabalhar com inteiros é uma má ideia, e BigInt é desnecessário neste caso. 
+Podemos, contudo, ler apenas o dígito "estragado" da máquina de escrever
+como inteiro, e depois transformá-lo num char, sem precisar de função pra isso.
+
+Alguns poderiam trabalhar com uma função replace() ou similar do C++ ou Java;
+porém, podemos simplesmente criar uma nova string e adicionar a ela apenas
+os dígitos válidos. Resto da explicação no código: contrato.cpp
+	
+
+# Problema D: Trilhos Novamente... Traçando Movimentos 
+Estrutura de Dados: Pilha. 
+A estação de trem relatada no problema funciona como uma pilha, 
+e dadas duas sequências de vagões, A e B, precisamos saber se é 
+possível obter B a partir de A, apenas empilhando vagões de A na estação
+e retirando-os para formar a sequência B. Implementação em: trilhos.cpp. 
+
+
+# Problema E: Zerinho ou Um
+Ad-Hoc muito fácil. O primeiro resolvido por todos na prova. 
+O enunciado é claro: dados 3 inteiros A, B e C, imprima qual é o diferente. 
+Caso todos sejam iguais, imprima um asterisco.
+Alguns empacaram com o EOF em C++ ou Java, não só neste problema. 
+
+Em C++, bastava fazer isto:
+while(cin >> A >> B >> C){
+	// sua lógica aqui
+}
+
+Em Java, se você estivesse usando a classe Scanner...
+Scanner sc = new Scanner(System.in);
+while(sc.hasNext()){
+	// leitura dos 3 inteiros, 
+	// seguida da sua lógica
+}
+
+Fora isso, nada demais. Esse problema caiu na Maratona de 2013, inclusive.
+
+
+# Problema F: Ir e Vir
+Grafos: Componentes Fortemente Conectadas (CFC), 
+ou em inglês, Strongly Connected Components (SCC).
+
+Junto com o Problema A (O Fim Está Próximo), este era um dos mais 
+difíceis da prova. Problemas de Grafos são relativamente comuns na 
+Maratona. É de se esperar pelo menos um deles em cada competição.
+
+Se você ainda não sabe a Teoria dos Grafos, dê uma olhada sobre o assunto 
+no Wikipedia e em outras fontes: pt.wikipedia.org/wiki/Teoria_dos_grafos
+
+Feito esse parênteses: quem já tem entendimento de Grafos e leu o 
+enunciado do problema percebeu de qual tipo de grafo se tratava: 
+um grafo direcionado não-valorado (cujas arestas possuem direção, mas sem peso). 
+
+O que o problema nos pede é: dado um grafo direcionado não-valorado, seus 
+vértices e suas arestas, é possível ir de qualquer vértice V para qualquer 
+vértice W (e vice-versa)?
+
+O enunciado pedia claramente: "Para cada caso de teste seu programa deve 
+imprimir uma linha contendo um inteiro G, onde G é igual a 1 se o requisito de
+*CONEXIDADE* [grifo meu] está satisfeito, ou G é igual a 0, caso contrário". 
+
+Para que este requisito de "conexidade" seja satisfeito, a quantidade de 
+componentes fortemente conectadas (CFCs) do grafo deve ser EXATAMENTE 1 (um). 
+Podemos fazer esta verificação usando dois algoritmos diferentes: o de Tarjan 
+e o de Kosaraju. Na hora da prova, não conseguimos implementar o Tarjan 
+corretamente, porém, depois, conseguimos resolver o problema em casa. 
+
+A explicação e implementação do Algoritmo de Tarjan você confere em irevir.cpp, 
+bem como na última página do arquivo TAP-Buscas-Grafos.pdf, localizado na pasta
+PDFs/ImprimirELevar do nosso Dropbox. Leve a sério o nome da pasta: se você 
+vai competir na Maratona agora, é uma boa imprimir e levar todos aqueles PDFs!
+ 
+
+Espero que tenham gostado das dicas. Um forte abraço e excelentes treinos até 
+a Maratona de Programação da SBC lá em Erechim! :D
+
+Leonardo Constantin
