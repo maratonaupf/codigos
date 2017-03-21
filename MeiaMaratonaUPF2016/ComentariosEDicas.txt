@@ -121,12 +121,12 @@ e o de Kosaraju. Na hora da prova, não conseguimos implementar o Tarjan
 corretamente, porém, depois, conseguimos resolver o problema em casa. 
 
 A explicação e implementação do Algoritmo de Tarjan você confere em irevir.cpp, 
-bem como na última página do arquivo TAP-Buscas-Grafos.pdf, localizado na pasta
-PDFs/ImprimirELevar do nosso Dropbox. Leve a sério o nome da pasta: se você 
-vai competir na Maratona agora, é uma boa imprimir e levar todos aqueles PDFs!
+bem como na última página do arquivo TAP-Buscas-Grafos.pdf, localizado em 
+GitHub.com/maratonaupf/materiais na pasta ImprimirELevar/. Leve a sério o nome 
+da pasta: se você vai competir na Maratona, é uma boa imprimir e levar aqueles PDFs!
  
 
 Espero que tenham gostado das dicas. Um forte abraço e excelentes treinos até 
-a Maratona de Programação da SBC lá em Erechim! :D
+a Maratona de Programação da SBC! :D
 
 Leonardo Constantin
