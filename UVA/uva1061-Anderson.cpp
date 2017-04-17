@@ -123,19 +123,19 @@ void load()
 	parents["O"]["O"]  = {"O"};
 
 	parentChild["A"]["A"]  = {"A","B","AB","O"};
-	parentChild["B"]["A"]  = {"A","AB"};
-	parentChild["AB"]["A"] = {"A","B","AB","O"};
-	parentChild["O"]["A"]  = {"A","AB"};
 	parentChild["A"]["B"]  = {"B","AB"};
-	parentChild["B"]["B"]  = {"A","B","AB","O"};
-	parentChild["AB"]["B"] = {"A","B","AB","O"};
-	parentChild["O"]["B"]  = {"B","AB"};
 	parentChild["A"]["AB"] = {"B","AB"};
-	parentChild["B"]["AB"] = {"A","AB"};
-	parentChild["AB"]["AB"]= {"A","B","AB"};
-	parentChild["O"]["AB"] = {};
 	parentChild["A"]["O"]  = {"A","B","O"};
+	parentChild["B"]["A"]  = {"A","AB"};
+	parentChild["B"]["B"]  = {"A","B","AB","O"};
+	parentChild["B"]["AB"] = {"A","AB"};
 	parentChild["B"]["O"]  = {"A","B","O"};
+	parentChild["AB"]["A"] = {"A","B","AB","O"};
+	parentChild["AB"]["B"] = {"A","B","AB","O"};
+	parentChild["AB"]["AB"]= {"A","B","AB"};
 	parentChild["AB"]["O"] = {};
+	parentChild["O"]["A"]  = {"A","AB"};
+	parentChild["O"]["B"]  = {"B","AB"};
+	parentChild["O"]["AB"] = {};
 	parentChild["O"]["O"]  = {"A","B","O"};
 }
