@@ -14,7 +14,7 @@ import java.lang.Character;
 import java.lang.StringBuilder;
 import java.util.Arrays;
 
-public class Main {
+class Main {
 	private static String dietValidation(String diet, String meal){
 		char[] dietArray = diet.toCharArray();
 		int tam = meal.length(), target;

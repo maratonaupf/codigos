@@ -11,7 +11,7 @@ using namespace std;
 #define MAXF 51
 
 int W, N;
-int v[MAX], w[MAX];
+int v[MAXF], w[MAXF];
 int m[MAXF][MAX];
 
 int pd(int i, int W){
@@ -26,7 +26,7 @@ int main(){
 	int i, T = 0;
 	while(scanf("%d %d", &W, &N), W != 0 && N != 0){
 		for(i = 1; i <= N; i++){
-			scanf("%d %d", w+i, v+i);
+			scanf("%d %d", w+i, v+i); 
 		}
 		memset(m, -1, sizeof(m));
 		printf("Teste %d\n", ++T);

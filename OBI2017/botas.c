@@ -1,4 +1,5 @@
-#include<iostream>
+#include<stdio.h>
+#include<string.h>
 #define MAX 31
 
 int main(){
@@ -6,19 +7,18 @@ int main(){
 	int pares;
 	char C;
 	int esq[MAX], dir[MAX];
-	while(cin >> N){
-		for(i = 0; i < MAX; i++){
-			esq[i] = dir[i] = 0;
-		}
+	while(scanf("%d\n", &N) != EOF){
+		memset(esq, 0, sizeof(esq));
+		memset(dir, 0, sizeof(dir));
 		while(N--){
-			cin >> M >> C;
+			scanf("%d %c\n", &M, &C);
 			C == 'E' ? esq[M-30]++ : dir[M-30]++;
 		}
 		pares = 0;
 		for(i = 0; i < MAX; i++){
 			if(esq[i] == dir[i]) pares += esq[i];
 		}
-		cout << pares << endl;
+		printf("%d\n", pares);
 	}
 	return 0;
 }
