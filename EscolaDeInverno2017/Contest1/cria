@@ -1,0 +1,6 @@
+#!/bin/bash
+## Script de criação de arquivos
+## só funfa com o geany aberto
+
+cat ~/.template.$2 > $1.$2
+geany $1.$2 $1.in $1.sol my.sol $1.$2

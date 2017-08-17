@@ -1,0 +1,21 @@
+#!/bin/bash
+## SCRIPT DE COMPILACAO
+
+arq=$(echo $1 | cut -f1 -d.)
+lang=$(echo $1 | cut -f2 -d.)
+
+> my.sol
+rm -f a.out *.class
+clear
+
+compilacao="g++ $1 -Wall -lm -g -std=c++11"
+execucao="./a.out"
+
+if ( $compilacao ) then
+	echo "### COMPILOU ###"
+	if !(time $execucao < $arq.in > my.sol) then
+		echo "### RUNTIME ERROR ###"
+	else
+		diff $arq.sol my.sol
+	fi
+fi
