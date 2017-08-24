@@ -1,91 +1,127 @@
-#include<iostream>
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
+#include <algorithm>
+
+#define eq(a,b) (strcmp(a,b)==0)
+
 using namespace std;
-#define NIL (-112345678)
-
-// to-do: implementar árvore binária NÃO-balanceada
-
-struct nodo{
-	nodo *pai;
-	int valor;
-	nodo *f[2];
-	nodo(){
-		valor = NIL;
-		pai = f[0] = f[1] = nullptr;
-	}
-	nodo(int val, nodo* _pai){
-		valor = val;
-		pai = _pai;
-	}
+struct nodo {
+	nodo *p;
+	int k;
+	nodo *l, *r;
 };
 
-struct arvore{
-	nodo *raiz;
-	arvore(){ 
-		raiz = nullptr;
+nodo* minimum(nodo* T){ return (T->l ? minimum(T->l) : T); }
+nodo* maximum(nodo* T){ return (T->r ? maximum(T->r) : T); }
+
+nodo* search(nodo* T, int v){
+	if(T == nullptr || v == T->k) return T;
+	if(v < T->k) return search(T->l, v);
+	if(v > T->k) return search(T->r, v);
+	return nullptr;
+}
+
+nodo* aloca(int v) {
+	nodo *N = new nodo;
+	N->p = nullptr; 
+	N->k = v;
+	N->l = N->r = nullptr;
+	return N;
+}
+
+nodo * insere (nodo * T, int v) {
+    if(T){
+        if (T->k > v) {
+            if(T->l) insere(T->l, v);
+            else{
+                T->l = aloca(v);
+                T->l->p = T;
+            }
+        } else if (T->k < v) {
+            if(T->r) insere(T->r, v);
+            else{
+                T->r = aloca(v);
+                T->r->p = T;
+            }
+        }
+    }
+    else T = aloca(v);
+    return T;
+}
+
+void prefixo(nodo *T) {
+	if(T){
+		printf("%d", T->k);
+		if(T->l){ printf(" "); prefixo(T->l); }
+		if(T->r){ printf(" "); prefixo(T->r); }
 	}
-	void insert(int x, nodo *pai){
-		if(*pai == nullptr) atual =
+}
+  
+void infixo(nodo *T) {
+	if(T){
+		if(T->l){ infixo(T->l); printf(" "); }
+		printf("%d", T->k);
+		if(T->r){ printf(" "); infixo(T->r); }
 	}
-	void insert(int x){
-		if(raiz == nullptr) *raiz = new nodo(x, nullptr);
+}
+  
+void posfixo(nodo *T) {
+	if(T){
+		if(T->l){ posfixo(T->l); printf(" "); }
+		if(T->r){ posfixo(T->r); printf(" "); }
+		printf("%d", T->k);
+	}
+}
+
+nodo* retira(nodo* T, int v) {
+	if(T == nullptr) return T;
+	else if(v < T->k) T->l = retira(T->l, v);
+	else if(v > T->k) T->r = retira(T->r, v);
+	else{
+		if(!(T->l || T->r)){ // no child
+			delete T;
+			T = nullptr;
+		}
+		else if(!(T->l && T->r)){ // one child
+			nodo* aux = T;
+			T = (T->l) ? T->l : T->r;
+			delete aux;
+		}
 		else{
-			if(x < raiz->value){
-				
-			}
+			nodo* aux = maximum(T->l);
+			T->k = aux->k;
+			T->l = retira(T->l, aux->k);
 		}
 	}
-	bool search(){
-		
-	}
-	void remove(){
-		
-	}
-	void prefix(){
-		
-	}
-	void infix(){
-		
-	}
-	void postfix(){
-		
-	}
-	void clear(){
-		
-	}
-};
+	return T;
+}
 
-int main(){
-	char str[10];
-	string op;
-	int x;
-	arvore t;
-	while(scanf("%s ", str) != EOF){
-		op = str;
-		switch(op){
-			case "I": 
-				scanf("%d", &x);
-				t.insert(x);
-				break;
-			case "P": 
-				scanf("%d", &x);
-				printf("%d %sexiste\n", x, t.search(x) ? "" : "nao ");
-				break;
-			case "R": 
-				scanf("%d", &x);
-				t.remove(x);
-				break;
-			case "INFIXA": 
-				t.infix();
-				break;
-			case "POSFIXA":
-				t.postfix();
-				break;
-			case "PREFIXA": 
-				t.prefix();
-				break;
+
+int main(void){
+	nodo* T = nullptr;
+	int v;
+	char op[8];
+	while(scanf("%s", op)!=EOF){	
+		if(eq(op,"I")){
+			scanf("%d", &v);
+			T = insere(T, v);
+		}else
+		
+		if(eq(op,"INFIXA")) { infixo(T); printf("\n"); }else
+		if(eq(op,"PREFIXA")){ prefixo(T); printf("\n"); }else
+		if(eq(op,"POSFIXA")){ posfixo(T); printf("\n"); }else
+		
+		if(eq(op,"P")){
+			scanf("%d", &v);
+			printf("%d%s existe\n", v, search(T, v) ? "" : " nao");
+		}else
+		
+		if(eq(op,"R")){
+			scanf("%d", &v);
+			T = retira(T, v);
 		}
-		t.clear();
 	}
 	return 0;
 }
