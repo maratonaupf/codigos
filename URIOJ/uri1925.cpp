@@ -65,7 +65,7 @@ bool sameComponent(int i, int j){
 	return false;
 }
 
-void countNovinhasNear(int i, int j){
+void countNovinhasNearby(int i, int j){
 	comps.clear();
 	int k, i2, j2, ans = 0;
 	for(k = 0; k < 4; k++){
@@ -94,7 +94,7 @@ int main(){
 		for(i = 0; i < L; i++){
 			for(j = 0; j < C; j++){
 				if(grid[i][j] == '*'){
-					countNovinhasNear(i, j);
+					countNovinhasNearby(i, j);
 					if(ai == -1 || nov[i][j] > nov[ai][aj]){
 						ai = i; aj = j;
 					}
