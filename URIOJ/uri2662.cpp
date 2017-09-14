@@ -1,5 +1,5 @@
 /*
- * Leonardo Deliyannis Constantin
+ * Leonardo Deliyannis Constantin, Gabriel Cena Kressin (ideias)
  * Maratona de Programação SBC 2017
  * E - Escala Musical
  */
