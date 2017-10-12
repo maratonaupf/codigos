@@ -9,6 +9,7 @@
 #define P (ll(1e9)+7)
 
 typedef long long ll;
+ll memo[MAX];
 
 ll expmod(ll x, ll n){
 	if(n == 0) return 1;
@@ -25,11 +26,15 @@ ll expmod(ll x, ll n){
 	return ((x % P) * (y % P)) % P;
 }
 
+void buildMemo(){
+	for(int i = 0; i < MAX; i++){
+		memo[i] = expmod(26, i); }}
+
 ll toInt(const char *s){
 	ll ret = 0;
 	int tam = strlen(s);
 	for(int i = tam-1; i >= 0; i--){
-		ret += ((s[i] - 'A') * expmod(26, tam-1-i)) % P;
+		ret += ((s[i] - 'A') * memo[tam-1-i]) % P;
 		ret %= P;
 	}
 	return ret;
@@ -37,6 +42,7 @@ ll toInt(const char *s){
 
 int main(){
 	char s[MAX];
+	buildMemo();
 	while(fgets(s, MAX, stdin) != NULL){
 		s[strlen(s)-1] = 0;
 		printf("%lld\n", toInt(s));
