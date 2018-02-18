@@ -1,6 +1,6 @@
 /*
  * Leonardo Deliyannis Constantin
- * http://codeforces.com/problemset/problem/242/A
+ * CodeForces 242A - Heads or Tails
 */
 
 #include<stdio.h>
