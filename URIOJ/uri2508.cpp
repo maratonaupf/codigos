@@ -5,19 +5,10 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#define MAX 1123
+#define MAX 112
 
 int value(int c){
-    return ((toupper(c) - 'A') % 9) + 1;
-}
-
-int singleDigit(int c){
-    int ans = 0;
-    while(c > 0){
-        ans += c % 10;
-        c /= 10;
-    }
-    return ans;
+    return isalpha(c) ? ((toupper(c) - 'A') % 9) + 1: 0;
 }
 
 int main(){
@@ -26,11 +17,10 @@ int main(){
     while(fgets(s, MAX, stdin) != NULL){
         ans = 0;
         for(i = 0; s[i]; i++){
-            if(isalpha(s[i]))
-                ans += value(s[i]);
+            ans += value(s[i]);
+            if(ans > 9)
+                ans = (ans/10) + (ans % 10);
         }
-        while(ans > 9)
-            ans = singleDigit(ans);
         printf("%d\n", ans);
     }
     return 0;
